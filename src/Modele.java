@@ -39,16 +39,6 @@ public class Modele extends Observable {
 	
 	public static void main(String[] args) {
 		Modele m = new Modele();
-		//System.out.println(m.combinaison);
-		//Color[] c = {Color.BLACK,Color.BLACK,Color.BLACK};
-		//m.propositions.add(new Rangee(m,c));
-		//m.propositions[0].ajouter(Color.BLUE);
-		//m.propositions[0].ajouter(Color.BLUE);
-		//m.propositions[0].ajouter(Color.BLUE);
-		//m.propositions[0].ajouter(Color.BLUE);
-		
-		
-		//v.vueprop.repaint();
 		
 		
 	}
