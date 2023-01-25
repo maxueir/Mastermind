@@ -107,30 +107,39 @@ public class Vue extends JFrame implements Observer{
 		vueprop=new VuePropositions(this);
 		
 		frame= new JFrame();
+		frame.setTitle("MASTERMIND");
 		frame.setLayout(new BorderLayout());
 		frame.setLocation(400,50);
 		frame.setSize(dimension);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(VueClavier,BorderLayout.SOUTH);
 		frame.add(vueprop,BorderLayout.CENTER);
+		frame.pack();
 		frame.setVisible(true);
 		
 		
 	}
-
+	public void gagne() {
+		VueClavier.removeAll();
+		VueClavier.setLayout(new FlowLayout());
+		VueClavier.add(new JLabel("GAGNE"));
+		frame.setVisible(true);
+	}
+	public void perdu() {
+		VueClavier.removeAll();
+		VueClavier.setLayout(new FlowLayout());
+		VueClavier.add(new JLabel("PERDU"));
+		frame.setVisible(true);
+	}
 
 	@Override
 	public void update(Observable o, Object arg) {
 		if(this.m.etat==Modele.Etat.GAGNE) {
-			VueClavier.removeAll();
-			VueClavier.setLayout(new FlowLayout());
-			VueClavier.add(new JLabel("GAGNE"));
+			this.gagne();
 		}
 		else if(this.m.etat==Modele.Etat.PERDU) {
-			VueClavier.removeAll();
-			VueClavier.add(new JLabel("PERDU"));
+			this.perdu();
 		}
-		frame.add(VueClavier,BorderLayout.SOUTH);
 		this.vueprop.repaint();
 		frame.repaint();
 		

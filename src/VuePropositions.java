@@ -8,6 +8,7 @@ public class VuePropositions extends Canvas{
 	
 	public VuePropositions(Vue v) {
 		this.v=v;
+		this.setSize(10+(this.v.diametreproposition+this.v.diametreproposition/2+this.v.diametreresultat+this.v.diametreresultat/2)*this.v.m.DIFFICULTE,10+(this.v.diametreproposition+this.v.diametreproposition/2)*this.v.m.nb_tentatives);
 		this.setVisible(true);
 	}
 	public VuePropositions() {
@@ -26,12 +27,10 @@ public class VuePropositions extends Canvas{
 				for (int j=0;j<this.v.m.propositions.get(i).resultat.size();j++) {
 				g.setColor(this.v.m.propositions.get(i).resultat.get(j));
 				g.fillOval(5+this.v.m.DIFFICULTE*(this.v.diametreproposition+this.v.diametreproposition/2)+j*15, 5+i*30, 10, 10);
-			//julien
 				}
 			}
 			
 		}
-		
 		
 	}
 

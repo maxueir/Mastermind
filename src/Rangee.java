@@ -50,12 +50,12 @@ public class Rangee {
 				}
 			}
 			
-			for(int i=0;i<modele.DIFFICULTE;i++) {
+			for(int i=0;i<modele.DIFFICULTE;i++) {//iterateur de la proposition
 				if(!jetons.get(i).equals(modele.combinaison.obtenir(i))) {
-					for(int j=0;j<modele.DIFFICULTE;j++) {
+					for(int j=0;j<modele.DIFFICULTE;j++) {//iterateur de la solution
 						if(j!=i) {
-							if(jetons.get(i).equals(modele.combinaison.obtenir(j)) && val.get(j)==true) {
-								val.set(j, false);
+							if(jetons.get(i).equals(modele.combinaison.obtenir(j)) && val.get(i)==true) {
+								val.set(i, false);
 								this.resultat.add(Color.WHITE);
 								
 							}
