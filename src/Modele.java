@@ -23,7 +23,7 @@ public class Modele extends Observable {
 		Random r = new Random();
 		Color[] c = new Color[DIFFICULTE];
 		for(int i=0;i<DIFFICULTE;i++) {
-			c[i]=(Couleurs[r.nextInt(8)]);
+			c[i]=(Couleurs[i%2]);
 		}
 		this.etat=Etat.EN_COURS;
 		this.combinaison= new Rangee(this,c);
