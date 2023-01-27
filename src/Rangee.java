@@ -27,6 +27,22 @@ public class Rangee {
 		this.modele=m;
 		
 	}
+	public void evaluerfacile() {
+		if(indiceJeton==modele.DIFFICULTE) {
+			this.complete=true;
+			this.modele.tentative++;
+			if(this.modele.tentative==modele.nb_tentatives) {
+				this.modele.etat=Modele.Etat.PERDU;
+			}
+			for(int i=0;i<this.modele.DIFFICULTE;i++) {
+				if(jetons.get(i).equals(modele.combinaison.obtenir(i))) {
+					this.resultat.add(Color.BLACK);
+					val.set(i, false);
+				}
+			}
+		}
+		
+	}
 	
 	public void evaluer() {
 		

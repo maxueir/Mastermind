@@ -1,13 +1,22 @@
+import java.awt.Checkbox;
+import java.awt.CheckboxGroup;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 public class Controleur implements ActionListener{
-	
+
 	Modele m;
-	
+
 	public Controleur(Modele m) {
 		this.m=m;
 	}
@@ -94,7 +103,49 @@ public class Controleur implements ActionListener{
 				this.m.propositions.get(this.m.propositions.size()-1).ajouter(Color.BLACK);
 			}
 		}
-		this.m.actualiser();
+		else if(couleur.equals("rejouer")) {
+			this.m.rejouer();
+		}
+		else if(couleur.equals("quitter")) {
+			this.m.v.frame.dispose();
+		}
+		else if(couleur.equals("nvlle")) {
+			JTextField tailleprop = new JTextField();
+			JTextField nbtent = new JTextField();
+			CheckboxGroup cg =new CheckboxGroup(); 
+			Checkbox facile =new Checkbox("facile", false, cg);
+			Checkbox difficile =new Checkbox("difficile", false, cg);
+			//JCheckBox difficulte = new JCheckBox();
+
+			Object[] entrees = {"Difficulte de la partie:" +"\n"+"(facile attribu a chaque jeton son evaluation)", facile,difficile,
+					"Taille de la combinaison a deviner:", tailleprop,
+					"Nombre de tentatives:", nbtent};
+
+			int option = JOptionPane.showConfirmDialog(this.m.v, entrees, "Nouvelle Partie", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+			if (option == JOptionPane.OK_OPTION) {
+				try {
+					int a =Integer.valueOf(tailleprop.getText());
+					int b=Integer.valueOf(nbtent.getText());
+					if(facile.getState() || difficile.getState()) {
+						this.m.difficile=difficile.getState();
+						this.m.DIFFICULTE=a;
+						this.m.nb_tentatives=b;
+						this.m.v.vueprop.actualiser();
+						this.m.rejouer();
+					}
+					
+				}
+				catch(Exception i) {
+				}
+			}
+			
+		}
+
+		if(!couleur.equals("quitter")){
+			this.m.actualiser();
+		}
+
+
 	}
 
 
