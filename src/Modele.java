@@ -9,7 +9,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 public class Modele extends Observable {
 	static Color[] Couleurs = {Color.BLUE,Color.YELLOW,Color.GREEN,Color.MAGENTA,Color.RED,Color.ORANGE,Color.WHITE,Color.BLACK};
-	int nb_tentatives=5;
+	int nb_tentatives=10;
 	int DIFFICULTE=4;
 	Boolean difficile;
 	static enum Etat {EN_COURS,GAGNE,PERDU};

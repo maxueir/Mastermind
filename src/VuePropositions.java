@@ -9,11 +9,11 @@ public class VuePropositions extends Canvas{
 
 	public VuePropositions(Vue v) {
 		this.v=v;
-		this.setSize(10+(this.v.diametreproposition+this.v.diametreproposition/2+this.v.diametreresultat+this.v.diametreresultat/2)*this.v.m.DIFFICULTE,10+(this.v.diametreproposition+this.v.diametreproposition/2)*this.v.m.nb_tentatives);
+		this.setSize(10+(this.v.diametreproposition+this.v.diametreproposition/2+this.v.diametreresultat+this.v.diametreresultat/2)*this.v.m.DIFFICULTE,10+(this.v.diametreproposition+this.v.diametreproposition/2)*(this.v.m.nb_tentatives+1));
 		this.setVisible(true);
 	}
 	public void actualiser() {
-		this.setSize(10+(this.v.diametreproposition+this.v.diametreproposition/2+this.v.diametreresultat+this.v.diametreresultat/2)*this.v.m.DIFFICULTE,10+(this.v.diametreproposition+this.v.diametreproposition/2)*this.v.m.nb_tentatives);
+		this.setSize(10+(this.v.diametreproposition+this.v.diametreproposition/2+this.v.diametreresultat+this.v.diametreresultat/2)*this.v.m.DIFFICULTE,10+(this.v.diametreproposition+this.v.diametreproposition/2)*(this.v.m.nb_tentatives+1));
 
 	}
 	public VuePropositions() {
@@ -45,7 +45,13 @@ public class VuePropositions extends Canvas{
 			}
 
 		}
-
+		 if(this.v.m.etat!=Modele.Etat.EN_COURS) {
+			 for(int i=0;i<this.v.m.combinaison.jetons.size();i++) {
+				 g.setColor(this.v.m.combinaison.jetons.get(i));
+				 g.fillOval((this.v.frame.getWidth()-(this.v.diametreproposition+this.v.diametreproposition/2)*this.v.m.DIFFICULTE)/2 +i*(this.v.diametreproposition+this.v.diametreproposition/2), 5+this.v.m.nb_tentatives*30 , 20, 20);
+				 
+			 }
+		 }
 	}
 
 }

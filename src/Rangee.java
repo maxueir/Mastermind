@@ -63,8 +63,9 @@ public class Rangee {
 					}
 					j++;
 				}
-				if(b) {
-					this.resultat.set(j-1,null);
+				if(b && val.get(i)==true) {
+					this.resultat.set(i,null);
+					val.set(i, false);
 				}
 
 
