@@ -7,9 +7,13 @@ import java.util.Random;
 
 import javax.swing.UnsupportedLookAndFeelException;
 
+//avis:
+	//jeu fonctionnel avec qq petits beugs (point turquoise)
+	//33je remercie quand meme le developpeur que j'aime de tous mon coeurrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr<3'
+	
 public class Modele extends Observable {
 	static Color[] Couleurs = {Color.BLUE,Color.YELLOW,Color.GREEN,Color.MAGENTA,Color.RED,Color.ORANGE,Color.WHITE,Color.BLACK};
-	int nb_tentatives=10;
+	int nb_tentatives=5;
 	int DIFFICULTE=4;
 	Boolean difficile;
 	static enum Etat {EN_COURS,GAGNE,PERDU};
@@ -23,13 +27,18 @@ public class Modele extends Observable {
 	public Modele() throws UnsupportedLookAndFeelException {
 		ctrl =new Controleur(this);
 		v= new Vue(this,ctrl);
-		this.difficile=true;
+		this.difficile=false;
 		
 		Random r = new Random();
 		Color[] c = new Color[DIFFICULTE];
 		for(int i=0;i<DIFFICULTE;i++) {
+			//c[i]=(Couleurs[(i%2) +2]);
 			c[i]=(Couleurs[r.nextInt(8)]);
 		}
+		/*c[0]=Color.ORANGE;
+		c[1]=Color.GREEN;
+		c[2]=Color.BLUE;
+		c[3]=Color.YELLOW;*/
 		this.etat=Etat.EN_COURS;
 		this.combinaison= new Rangee(this,c);
 		propositions= new ArrayList<Rangee>();
