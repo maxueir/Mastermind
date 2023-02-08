@@ -100,6 +100,7 @@ public class Vue extends JFrame implements Observer,WindowListener{
 		else {
 			this.m.scores.put(this.m.p, new Score(this.m.tentative,29.09));
 		}
+		System.out.println(this.m.scores);
 		this.actualisernord();
 		this.nord.add(new JLabel("PARTIE GAGNE"),BorderLayout.CENTER);
 		this.Clavier.fin(l);
@@ -115,6 +116,8 @@ public class Vue extends JFrame implements Observer,WindowListener{
 	
 	public void actualisernord() {
 		this.nord.removeAll();
+		this.scores.removeAll();
+		this.scores.setLayout(new BoxLayout(this.scores,BoxLayout.Y_AXIS));
 		this.nord.setLayout(new BorderLayout());
 		this.nord.add(nvlle,BorderLayout.WEST);
 		
@@ -160,6 +163,7 @@ public class Vue extends JFrame implements Observer,WindowListener{
 			
 			encoder.writeObject(this.m.scores);
 			encoder.flush();
+			System.out.println("ok");
 		}catch(final IOException ex) {
 			throw new RuntimeException("Impossible d'ecrire les donnees");
 		}finally {

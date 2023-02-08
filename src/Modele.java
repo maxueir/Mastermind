@@ -35,7 +35,7 @@ public class Modele extends Observable implements Serializable{
 	Partie p;
 	
 	public Modele() throws UnsupportedLookAndFeelException {
-		this.difficile=true;
+		this.difficile=false;
 		p=new Partie(difficile,DIFFICULTE);
 		XMLDecoder decoder=null;
 		fichier = new File("scores.xml");
@@ -46,6 +46,7 @@ public class Modele extends Observable implements Serializable{
 			
 			this.scores= (Map<Partie,Score>) decoder.readObject();
 		} catch(Exception e) {
+			System.out.println("hey");
 			scores= new HashMap<Partie,Score>();
 			//System.out.println("Erreur lors de la lecture des donnees");
 			//throw new RuntimeException("Erreur lors de la lecture des donnees");
@@ -166,6 +167,24 @@ public class Modele extends Observable implements Serializable{
 	}
 	public void setMeilleurs(Map<Partie, Score> meilleurs) {
 		this.scores = meilleurs;
+	}
+	public Map<Partie, Score> getScores() {
+		return scores;
+	}
+	public void setScores(Map<Partie, Score> scores) {
+		this.scores = scores;
+	}
+	public File getFichier() {
+		return fichier;
+	}
+	public void setFichier(File fichier) {
+		this.fichier = fichier;
+	}
+	public Partie getP() {
+		return p;
+	}
+	public void setP(Partie p) {
+		this.p = p;
 	}
 
 	

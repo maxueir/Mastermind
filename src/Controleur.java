@@ -113,6 +113,7 @@ public class Controleur implements ActionListener,MouseListener{
 		}
 		else if(couleur.equals("rejouer")) {
 			this.m.rejouer();
+			this.m.v.actualisernord();
 		}
 		else if(couleur.equals("quitter")) {
 			this.m.v.frame.dispose();
@@ -152,6 +153,7 @@ public class Controleur implements ActionListener,MouseListener{
 						this.m.DIFFICULTE=a;
 						this.m.nb_tentatives=b;
 						this.m.v.vueprop.actualiser();
+						this.m.v.actualisernord();
 						this.m.rejouer();
 					}
 					
