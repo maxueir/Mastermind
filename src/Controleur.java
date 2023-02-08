@@ -3,6 +3,12 @@ import java.awt.CheckboxGroup;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.beans.XMLEncoder;
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -13,12 +19,14 @@ import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-public class Controleur implements ActionListener{
+public class Controleur implements ActionListener,MouseListener{
 
 	Modele m;
+	Boolean b;
 
 	public Controleur(Modele m) {
 		this.m=m;
+		b=false;
 	}
 
 	@Override
@@ -108,6 +116,19 @@ public class Controleur implements ActionListener{
 		}
 		else if(couleur.equals("quitter")) {
 			this.m.v.frame.dispose();
+			XMLEncoder encoder=null;
+			try {
+				FileOutputStream fos = new FileOutputStream("scores.xml");
+				BufferedOutputStream bos = new BufferedOutputStream(fos);
+				encoder = new XMLEncoder(bos);
+				
+				encoder.writeObject(this.m.scores);
+				encoder.flush();
+			}catch(final IOException ex) {
+				throw new RuntimeException("Impossible d'ecrire les donnees");
+			}finally {
+				if(encoder!=null)encoder.close();
+			}
 		}
 		else if(couleur.equals("nvlle")) {
 			JTextField tailleprop = new JTextField();
@@ -147,6 +168,56 @@ public class Controleur implements ActionListener{
 		}
 
 
+	}
+
+	public Modele getM() {
+		return m;
+	}
+
+	public void setM(Modele m) {
+		this.m = m;
+	}
+
+	public Boolean getB() {
+		return b;
+	}
+
+	public void setB(Boolean b) {
+		this.b = b;
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		if(e.getClickCount()==2 && this.m.propositions.get(this.m.propositions.size()-1).jetons.size()!=0 && !this.m.propositions.get(this.m.propositions.size()-1).complete) {
+			
+			this.m.propositions.get(this.m.propositions.size()-1).suppr();
+			this.m.v.vueprop.repaint();
+		}
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

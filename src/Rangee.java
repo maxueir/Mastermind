@@ -27,6 +27,14 @@ public class Rangee {
 		this.modele=m;
 
 	}
+	
+	public void suppr() {
+		if(this.jetons.size()!=0 && !this.complete) {
+			this.jetons.remove(indiceJeton-1);
+			indiceJeton--;
+		}
+	}
+	
 	public void evaluerfacile() {
 		if(indiceJeton==modele.DIFFICULTE) {
 			this.complete=true;
@@ -121,7 +129,6 @@ public class Rangee {
 							if(jetons.get(i).equals(modele.combinaison.obtenir(j)) && val.get(j)==true) {
 								val.set(j, false);
 								this.resultat.add(Color.WHITE);
-
 								b=false;
 							}
 						}
