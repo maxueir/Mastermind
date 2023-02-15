@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="16.0.2" class="java.beans.XMLDecoder">
+ <object class="java.util.TreeMap">
+  <void method="put">
+   <object class="Partie">
+    <void property="taille">
+     <int>4</int>
+    </void>
+   </object>
+   <object class="Score">
+    <void property="score">
+     <int>3</int>
+    </void>
+    <void property="temps">
+     <int>22</int>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>

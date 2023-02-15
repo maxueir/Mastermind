@@ -1,17 +1,19 @@
-import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.beans.XMLDecoder;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Random;
+import java.util.TreeMap;
 
+import javax.swing.Timer;
 import javax.swing.UnsupportedLookAndFeelException;
 
 //avis:
@@ -33,9 +35,11 @@ public class Modele extends Observable implements Serializable{
 	Map<Partie,Score> scores;
 	File fichier;
 	Partie p;
+	Timer t;
+	static int temps;
 	
 	public Modele() throws UnsupportedLookAndFeelException {
-		this.difficile=false;
+		this.difficile=true;
 		p=new Partie(difficile,DIFFICULTE);
 		XMLDecoder decoder=null;
 		fichier = new File("scores.xml");
@@ -45,15 +49,18 @@ public class Modele extends Observable implements Serializable{
 			decoder = new XMLDecoder(bis);
 			
 			this.scores= (Map<Partie,Score>) decoder.readObject();
+			//temps=(int) decoder.readObject();
 		} catch(Exception e) {
 			System.out.println("hey");
-			scores= new HashMap<Partie,Score>();
+			scores= new TreeMap<Partie,Score>();
+			temps=0;
 			//System.out.println("Erreur lors de la lecture des donnees");
 			//throw new RuntimeException("Erreur lors de la lecture des donnees");
 		}finally {
 			if(decoder != null)decoder.close();
 		}
 		System.out.println(scores);
+		
 		
 		
 		
@@ -72,6 +79,17 @@ public class Modele extends Observable implements Serializable{
 		propositions= new ArrayList<Rangee>();
 		propositions.add(new Rangee(this));
 		tentative=0;
+		//temps=0;
+		this.t=new Timer(1000, new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Modele.temps++;
+				System.out.println(Modele.temps);
+			}
+			
+		});
+		this.t.start();
 	}
 	public void rejouer() {
 		p=new Partie(difficile,DIFFICULTE);
@@ -89,6 +107,9 @@ public class Modele extends Observable implements Serializable{
 		this.v.Clavier.boutons();
 		this.v.frame.pack();
 		this.v.frame.setVisible(true);
+		t.restart();
+		temps=0;
+		t.start();
 	}
 	public void actualiser() {
 		this.setChanged();

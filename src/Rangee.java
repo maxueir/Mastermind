@@ -54,10 +54,8 @@ public class Rangee {
 					this.resultat.set(i,Color.BLACK);
 					
 					val.set(i, false);
-					System.out.println(i);
 				}
 			}
-			System.out.println(this.resultat);
 
 			for(int i=0;i<this.modele.DIFFICULTE;i++) {//boucle pour la proposition
 
@@ -66,12 +64,6 @@ public class Rangee {
 				int j=0;
 				Boolean b=true;
 				while (j<this.modele.DIFFICULTE && b) {
-					if(i==3) {
-						System.out.println(jetons.get(i).equals(modele.combinaison.obtenir(j)));
-						System.out.println(j);
-						System.out.println(val.get(j));
-						System.out.println(val);
-					}
 					if(this.resultat.get(i)==null && jetons.get(i).equals(modele.combinaison.obtenir(j)) && val.get(j)) {
 						b=false;
 						val.set(j, false);

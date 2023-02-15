@@ -28,7 +28,7 @@ public class Controleur implements ActionListener,MouseListener{
 		this.m=m;
 		b=false;
 	}
-
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String couleur=e.toString().split(" ")[e.toString().split(" ").length -1];
@@ -116,6 +116,7 @@ public class Controleur implements ActionListener,MouseListener{
 			this.m.v.actualisernord();
 		}
 		else if(couleur.equals("quitter")) {
+			this.m.t.stop();
 			this.m.v.frame.dispose();
 			XMLEncoder encoder=null;
 			try {
